@@ -3,8 +3,9 @@ import classes from './Customer.module.css';
 import NavBar from '@/components/Common/NavBar';
 import { useRouter } from 'next/router';
 import AvailableRequests from '@/constants/requests.json';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import CheckBx from '@/components/Common/CheckBx';
+import Head from 'next/head';
 
 const navItems: INavBar[] = [
 	{
@@ -69,67 +70,72 @@ const RaiseRequest = () => {
 			.finally(() => setLoading(false));
 	};
 	return (
-		<div className={classes.Customer}>
-			<NavBar
-				navItems={navItems}
-				activeValue={activeValue}
-				onClick={onClickHandler}
-			/>
-			<div className={classes.raise}>
-				<h1 className={classes.h1}>Customer ID: {customerID?.toString()}</h1>
-				<div className={classes.raiseRequestForm}>
-					<div className={classes.requestDropDown}>
-						<p>Request Type:</p>
-						<select
-							onChange={(e) => {
-								const updatedValue = AvailableRequests.find(
-									(req) => req.id === e.target.value
-								);
-								if (updatedValue) setTask({ ...updatedValue });
-							}}
-							value={task.id}
-						>
-							{AvailableRequests.map((request) => (
-								<option
-									key={request.id}
-									value={request.id}
-								>
-									{request.name}
-								</option>
-							))}
-						</select>
+		<Fragment>
+			<Head>
+				<title>MyBooks Accounting | Expert</title>
+			</Head>
+			<div className={classes.Customer}>
+				<NavBar
+					navItems={navItems}
+					activeValue={activeValue}
+					onClick={onClickHandler}
+				/>
+				<div className={classes.raise}>
+					<h1 className={classes.h1}>Customer ID: {customerID?.toString()}</h1>
+					<div className={classes.raiseRequestForm}>
+						<div className={classes.requestDropDown}>
+							<p>Request Type:</p>
+							<select
+								onChange={(e) => {
+									const updatedValue = AvailableRequests.find(
+										(req) => req.id === e.target.value
+									);
+									if (updatedValue) setTask({ ...updatedValue });
+								}}
+								value={task.id}
+							>
+								{AvailableRequests.map((request) => (
+									<option
+										key={request.id}
+										value={request.id}
+									>
+										{request.name}
+									</option>
+								))}
+							</select>
+						</div>
+						<CheckBx
+							selections={availableSelections}
+							activeValue={activeRequest}
+							onClick={onDeadlineTypeChange}
+							label='Deadline:'
+						/>
+						<input
+							className={classes.deadlineInput}
+							type='number'
+							placeholder='Deadline in Days'
+							disabled={activeRequest === 'default'}
+							value={customHourInput}
+							onChange={(e) => setCustomHourInput(+e.target.value)}
+						/>
+						{loading ? (
+							<p>Please Wait...</p>
+						) : (
+							<button
+								type='submit'
+								onClick={raiseTaskRequest}
+							>
+								Raise Request
+							</button>
+						)}
+						{error != undefined && <p className={classes.error}>{error}</p>}
+						{success && (
+							<p className={classes.success}>Successfully added Task.</p>
+						)}
 					</div>
-					<CheckBx
-						selections={availableSelections}
-						activeValue={activeRequest}
-						onClick={onDeadlineTypeChange}
-						label='Deadline:'
-					/>
-					<input
-						className={classes.deadlineInput}
-						type='number'
-						placeholder='Deadline in Days'
-						disabled={activeRequest === 'default'}
-						value={customHourInput}
-						onChange={(e) => setCustomHourInput(+e.target.value)}
-					/>
-					{loading ? (
-						<p>Please Wait...</p>
-					) : (
-						<button
-							type='submit'
-							onClick={raiseTaskRequest}
-						>
-							Raise Request
-						</button>
-					)}
-					{error != undefined && <p className={classes.error}>{error}</p>}
-					{success && (
-						<p className={classes.success}>Successfully added Task.</p>
-					)}
 				</div>
 			</div>
-		</div>
+		</Fragment>
 	);
 };
 
