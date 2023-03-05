@@ -186,10 +186,12 @@ class TaskRecords {
 		return userTypes.map((userType) => this.addUser(userType));
 	}
 	loginUser(userType: UserType, userID: string): boolean {
-		console.log(this.user, userID);
 		const user = this.user[userID];
 		if (!user) return false;
 		return this.user[userID] === userType;
+	}
+	getAllUsers() {
+		return this.user;
 	}
 }
 

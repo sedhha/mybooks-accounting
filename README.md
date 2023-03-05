@@ -69,13 +69,39 @@ Frontend majorly consists of two components:
 
 As per the problem statement, fixed types of tasks are kept at this [json](constants/requests.json). One can always add, edit or remove from the existing json and accordingly it would reflect on UI and backend.
 
+#### Middleware
+
+In order to create account, the user must request to: 
+{{baseURL}}/api/admin/add-users?userType=Customer&userType=Expert
+
+where baseURL is https://mybooks-accounting.vercel.app.
+
+I wanted to include Bearer authentication but ended up using normal `Authorization` header. The header secret token is added in the attachment `.env` file where variable name is `ADMIN_ID`.
+
+Here's the curl command for the same:
+
+```bash
+curl --location --request GET 'https://mybooks-accounting.vercel.app/api/admin/add-users?userType=Customer&userType=Expert' \
+--header 'Authorization: <SecretToken ADMIN_ID From .env FILE>'
+```
+
+The above endpoint is secured by middleware interceptor that can be found [here](backend/middleware).
+
+#### APIs
+
+All APIs can be found [here](backend/apis).
+
+#### Database
+
+Currently all the data is stored in JS memory and for that reason user creation is restricted to upto max 50 users and task creation is restricted to upto max 1000 tasks per user. The implementation can be found in this [file](backend/process/index.ts).
+
 ### Unit Testing
 
-I didn't got much time to complete unit testing part but have added two minor unit tests to match against existing snapshots and mock some of the functionalities.
+I didn't got much time to complete unit testing part but have added two minor unit tests to match against existing snapshots and mock some of the functionalities. These tests can be found [here](__tests__/customer-view.test.tsx).
 
-### CI/CD
+### CI/CD (Github Actions)
 
-
+The unit tests that I have added have been integrated also with [github actions](.github/workflows/jest-unit-tests.yml). Here the secrets are injected to `.env` file from github actions itself and then all the CI tests run.
 
 ## Appendix
 
