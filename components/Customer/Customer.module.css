@@ -93,3 +93,11 @@
 	border: none;
 	cursor: pointer;
 }
+
+.error {
+	color: crimson;
+}
+
+.success {
+	color: var(--green);
+}

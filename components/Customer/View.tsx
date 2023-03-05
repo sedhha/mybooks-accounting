@@ -1,4 +1,4 @@
-import { INavBar } from '@/interfaces/frontend';
+import { INavBar } from '@/interfaces/index';
 import classes from './Customer.module.css';
 import NavBar from '@/components/Common/NavBar';
 import { useRouter } from 'next/router';
@@ -28,7 +28,9 @@ const ViewRequest = () => {
 				activeValue={activeValue}
 				onClick={onClickHandler}
 			/>
-			<div>Customer: {customerID?.toString()}</div>
+			<div className={classes.raise}>
+				<h1 className={classes.h1}>Customer ID: {customerID?.toString()}</h1>
+			</div>
 		</div>
 	);
 };

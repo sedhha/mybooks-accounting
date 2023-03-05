@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './CheckBx.module.css';
 import CheckBoxItem from './CheckBxItem';
-import { ISelection } from '@/interfaces/frontend';
+import { ISelection } from '@/interfaces/FormSelection';
 
 type Props = {
 	onClick?: (value: string) => void;

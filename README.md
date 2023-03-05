@@ -44,10 +44,9 @@ Folder structure:
 ```bash
 - mybooks-accounting
   - interfaces // Contains all the typed definitions and interfaces
-    - frontend
-        - FormSelection.ts
-        - index.ts // Contains all the exported items
-        - NavBar.ts
+    - FormSelection.ts
+    - index.ts // Contains all the exported items
+    - NavBar.ts
     - components // Contains all the frontend components used in the project
         - Common // Contains all the common project components used at multiple places
         ...

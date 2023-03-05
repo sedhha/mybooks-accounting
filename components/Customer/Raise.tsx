@@ -1,10 +1,11 @@
-import { INavBar } from '@/interfaces/frontend';
+import { INavBar, IResponse } from '@/interfaces/index';
 import classes from './Customer.module.css';
 import NavBar from '@/components/Common/NavBar';
 import { useRouter } from 'next/router';
 import AvailableRequests from '@/constants/requests.json';
 import { useState } from 'react';
 import CheckBx from '@/components/Common/CheckBx';
+import { IRequestItem } from '@/interfaces/Requests';
 
 const navItems: INavBar[] = [
 	{
@@ -36,7 +37,37 @@ const RaiseRequest = () => {
 	};
 	const [activeRequest, setActiveRequest] = useState('default');
 	const [task, setTask] = useState({ ...AvailableRequests[0] });
+	const [customHourInput, setCustomHourInput] = useState(2);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState<undefined | string>(undefined);
+	const [success, setSuccess] = useState<boolean>(false);
 	const onDeadlineTypeChange = (newType: string) => setActiveRequest(newType);
+	const raiseTaskRequest = () => {
+		setLoading(true);
+		const payload =
+			activeRequest === 'default'
+				? { ...task }
+				: { ...task, defaultDeadlineInDays: customHourInput };
+		fetch('/api/customer/add-task', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'x-user-id': 'sadcerfqwhdswqbakdfsbDBECwaswcsr1',
+			},
+			body: JSON.stringify(payload),
+		})
+			.then((res) =>
+				res.json().then((data: IResponse<null>) => {
+					if (data.error) {
+						setError(data.message);
+					} else {
+						setSuccess(true);
+						setError(undefined);
+					}
+				})
+			)
+			.finally(() => setLoading(false));
+	};
 	return (
 		<div className={classes.Customer}>
 			<NavBar
@@ -79,9 +110,23 @@ const RaiseRequest = () => {
 						type='number'
 						placeholder='Deadline in Days'
 						disabled={activeRequest === 'default'}
-						defaultValue={task.defaultDeadlineInDays}
+						value={customHourInput}
+						onChange={(e) => setCustomHourInput(+e.target.value)}
 					/>
-					<button type='submit'>Raise Request</button>
+					{loading ? (
+						<p>Please Wait</p>
+					) : (
+						<button
+							type='submit'
+							onClick={raiseTaskRequest}
+						>
+							Raise Request
+						</button>
+					)}
+					{error != undefined && <p className={classes.error}>{error}</p>}
+					{success && (
+						<p className={classes.success}>Successfully added Task.</p>
+					)}
 				</div>
 			</div>
 		</div>
