@@ -34,6 +34,10 @@ const ViewRequest = () => {
 		if (!customerID || typeof customerID !== 'string') return;
 		router.push(`/customer/${customerID}/${path}`);
 	};
+	const logOutHandler = () => {
+		sessionStorage.removeItem('userID');
+		router.push('/');
+	};
 	useEffect(() => {
 		if (!customerID || typeof customerID !== 'string') return;
 		fetch(`/api/customer/get-task`, {
@@ -53,6 +57,10 @@ const ViewRequest = () => {
 			/>
 			<div className={classes.raise}>
 				<h1 className={classes.h1}>Customer ID: {customerID?.toString()}</h1>
+				<p className={classes.logout}>
+					Not {customerID?.toString()}?{' '}
+					<span onClick={logOutHandler}>Logout</span>
+				</p>
 				<div className={classes.userRequests}>
 					{tasks.map((item) => (
 						<div

@@ -138,3 +138,12 @@
     color: rgb(27, 31, 35);
     text-shadow: rgb(0, 0, 0) 2px 2px 2px;
 }
+
+.logout {
+	color: var(--green);
+}
+.logout > span {
+	color:crimson;
+	text-decoration: underline;
+	cursor: pointer;
+}

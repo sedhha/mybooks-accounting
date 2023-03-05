@@ -1,4 +1,4 @@
-import { INavBar } from '@/interfaces/frontend';
+import { INavBar } from '@/interfaces/index';
 import classes from './NavBar.module.css';
 
 type Props = {

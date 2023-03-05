@@ -12,6 +12,7 @@ const handler: NextApiHandler = (
 	res: NextApiResponse<IResponse<IErrorWithMessage[]>>
 ) => {
 	const { userType } = req.query;
+	console.log({ userType });
 	const parsedContent = validator.safeParse(userType);
 	if (
 		typeof userType === 'undefined' ||

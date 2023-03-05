@@ -2,20 +2,35 @@ import React, { useState } from 'react';
 import classes from './Login.module.css';
 import Head from 'next/head';
 import CheckBx from '@/components/Common/CheckBx';
+import { useRouter } from 'next/router';
 
 const availableSelections = [
 	{
 		label: 'Customer',
-		value: 'customer',
+		value: 'Customer',
 	},
 	{
 		label: 'Expert',
-		value: 'expert',
+		value: 'Expert',
 	},
 ];
 const LoginScreen = () => {
-	const [activeValue, setActiveValue] = useState('customer');
+	const [activeValue, setActiveValue] = useState('Customer');
 	const onUserTypeChange = (newType: string) => setActiveValue(newType);
+	const router = useRouter();
+	const [id, setID] = useState('');
+	const [error, setError] = useState<string | null>(null);
+	const onLogin = () => {
+		fetch(`/api/login?loginID=${id}&userType=${activeValue}`, {
+			method: 'GET',
+		}).then((res) => {
+			if (res.status === 200) {
+				sessionStorage.setItem('userID', id);
+				router.push(`/${activeValue.toLowerCase()}/${id}/view`);
+				setError(null);
+			} else setError('Invalid Credentials');
+		});
+	};
 	return (
 		<React.Fragment>
 			<Head>
@@ -31,6 +46,8 @@ const LoginScreen = () => {
 							id='login-id'
 							name='login-id'
 							required
+							value={id}
+							onChange={(e) => setID(e.target.value)}
 						/>
 						<CheckBx
 							selections={availableSelections}
@@ -38,7 +55,13 @@ const LoginScreen = () => {
 							onClick={onUserTypeChange}
 							label={'User Type:'}
 						/>
-						<button type='submit'>Login</button>
+						{error != null && <p className={classes.error}>{error}</p>}
+						<button
+							type='submit'
+							onClick={onLogin}
+						>
+							Login
+						</button>
 					</div>
 				</div>
 			</div>

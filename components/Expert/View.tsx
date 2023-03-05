@@ -42,6 +42,10 @@ const ViewRequest = () => {
 			})
 		);
 	}, [expertID]);
+	const logOutHandler = () => {
+		sessionStorage.removeItem('userID');
+		router.push('/');
+	};
 	return (
 		<div className={classes.Customer}>
 			<NavBar
@@ -51,6 +55,10 @@ const ViewRequest = () => {
 			/>
 			<div className={classes.raise}>
 				<h1 className={classes.h1}>Expert ID: {expertID?.toString()}</h1>
+				<p className={classes.logout}>
+					Not {expertID?.toString()}?{' '}
+					<span onClick={logOutHandler}>Logout</span>
+				</p>
 				<div className={classes.userRequests}>
 					{tasks.map((item) => (
 						<div

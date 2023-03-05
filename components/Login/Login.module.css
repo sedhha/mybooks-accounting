@@ -44,3 +44,8 @@
 	background-color: var(--hover-green);
 }
 
+.error {
+	color: crimson;
+}
+
+
