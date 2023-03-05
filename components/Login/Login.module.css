@@ -44,14 +44,14 @@
 .form > button[type="submit"] {
 	padding: 10px 20px;
 	border-radius: 5px;
-	background-color: #4CAF50;
+	background-color: var(--green);
 	color: #fff;
 	border: none;
 	cursor: pointer;
 }
 
 .form > button[type="submit"]:hover {
-	background-color: #3e8e41;
+	background-color: var(--hover-green);
 }
 
 /*---------CheckBox Item----------------*/

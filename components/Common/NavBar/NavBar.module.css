@@ -1,6 +1,31 @@
-.NavBar {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
+.navList {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: var(--green);
+	padding: 2vh 2vw;
+}
+
+.navList li {
+	list-style: none;
+    height: 100%;
+    text-align: center;
+}
+
+.navList li {
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.2rem;
+	transition: all 0.3s ease-in-out;
+	border-bottom: 2px solid transparent;
+	cursor: pointer;
+}
+
+.navList li[is-active='true'] {
+	border-bottom: 2px solid #fff;
+}
+
+.navList li:hover {
+	scale: 0.96;
+	transition: all 0.3s ease-in;
 }

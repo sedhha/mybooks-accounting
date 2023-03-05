@@ -8,13 +8,18 @@ const navItems: INavBar[] = [
 		isActive: true,
 		onClickHandler: (value: string) => console.log('Triggering ' + value),
 	},
+	{
+		value: 'Raise Request',
+		isActive: false,
+		onClickHandler: (value: string) => console.log('Triggering ' + value),
+	},
 ];
 const ViewRequest = () => {
 	const router = useRouter();
 	const { customerID } = router.query;
 	return (
 		<div className={classes.Customer}>
-			<NavBar navItems={navItems} />;
+			<NavBar navItems={navItems} />
 			<div>Customer: {customerID?.toString()}</div>
 		</div>
 	);

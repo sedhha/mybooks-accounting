@@ -1,4 +1,5 @@
 
 .Customer {
     display: flex;
+    flex-direction: column;
 }

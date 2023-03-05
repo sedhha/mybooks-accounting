@@ -7,11 +7,11 @@ type Props = {
 
 const NavBar = ({ navItems }: Props) => {
 	return (
-		<ul className={classes.NavBar}>
+		<ul className={classes.navList}>
 			{navItems.map((navItem) => (
 				<li
 					key={navItem.value}
-					is-Active={`${navItem.isActive}`}
+					is-active={`${navItem.isActive}`}
 					onClick={() => navItem.onClickHandler(navItem.value)}
 				>
 					{navItem.value}
