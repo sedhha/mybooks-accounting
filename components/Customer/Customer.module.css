@@ -101,3 +101,39 @@
 .success {
 	color: var(--green);
 }
+
+.userRequests {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	width: 100%;
+
+}
+.userRequestCard {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	box-shadow: 0 0 0 2px #ccc;
+	padding: 1vh 0;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.userRequestCard > p > strong {
+	font-family: verdana;
+	text-align: center;
+	font-size: 1.5rem;
+	color: rgb(69, 201, 91);
+	text-shadow: rgb(0, 0, 0) 2px 2px 2px;
+	padding: 2vh 1vw;
+}
+
+.userRequestCard > p {
+	font-size: 1.5rem;
+}
+.userRequestCard > p {
+    font-family: verdana;
+    text-align: center;
+    color: rgb(27, 31, 35);
+    text-shadow: rgb(0, 0, 0) 2px 2px 2px;
+}

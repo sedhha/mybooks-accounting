@@ -114,7 +114,7 @@ const RaiseRequest = () => {
 						onChange={(e) => setCustomHourInput(+e.target.value)}
 					/>
 					{loading ? (
-						<p>Please Wait</p>
+						<p>Please Wait...</p>
 					) : (
 						<button
 							type='submit'

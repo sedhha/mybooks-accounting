@@ -3,6 +3,13 @@ interface IErrorWithMessage {
 	message?: string;
 }
 
+interface IErrorWithPayload<T> {
+	error: boolean;
+	payload?: T;
+}
+
 type UserType = 'Expert' | 'Customer';
 
-export type { IErrorWithMessage, UserType };
+type TaskStatus = 'Assigned' | 'Expired' | 'Queued' | 'Completed';
+
+export type { IErrorWithMessage, UserType, TaskStatus, IErrorWithPayload };
