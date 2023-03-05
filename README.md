@@ -95,6 +95,13 @@ All APIs can be found [here](backend/apis).
 
 Currently all the data is stored in JS memory and for that reason user creation is restricted to upto max 50 users and task creation is restricted to upto max 1000 tasks per user. The implementation can be found in this [file](backend/process/index.ts).
 
+One can view all the users using admin API by making get call to: 
+
+```bash
+curl --location --request GET 'https://mybooks-accounting.vercel.app/api/admin/get-all-users' \
+--header 'Authorization: <SecretToken ADMIN_ID From .env FILE>'
+```
+
 ### Unit Testing
 
 I didn't got much time to complete unit testing part but have added two minor unit tests to match against existing snapshots and mock some of the functionalities. These tests can be found [here](__tests__/customer-view.test.tsx).
@@ -120,3 +127,4 @@ I got little confused if it is open to any backend technology or not. However, t
 
 This was just to save the time and I am well aware of restful API, devops, CI/CD and backend concepts. I can pick up any framework pretty quickly (Java | SpringBoot) as the core concepts remain the same. :)
 
+For any question or queries, feel free to reach out to me @ activity.schoolsh2@gmail.com.
