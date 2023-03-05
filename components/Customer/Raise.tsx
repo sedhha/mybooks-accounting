@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import AvailableRequests from '@/constants/requests.json';
 import { useState } from 'react';
 import CheckBx from '@/components/Common/CheckBx';
-import { IRequestItem } from '@/interfaces/Requests';
 
 const navItems: INavBar[] = [
 	{
@@ -44,6 +43,7 @@ const RaiseRequest = () => {
 	const onDeadlineTypeChange = (newType: string) => setActiveRequest(newType);
 	const raiseTaskRequest = () => {
 		setLoading(true);
+		if (!customerID || typeof customerID !== 'string') return;
 		const payload =
 			activeRequest === 'default'
 				? { ...task }
@@ -52,7 +52,7 @@ const RaiseRequest = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-user-id': 'sadcerfqwhdswqbakdfsbDBECwaswcsr1',
+				'x-user-id': customerID,
 			},
 			body: JSON.stringify(payload),
 		})

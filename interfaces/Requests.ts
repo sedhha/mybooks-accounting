@@ -16,6 +16,7 @@ type IReqBE = IRequestItem & {
 	maxTimeAllowed: number;
 	assignedExpertID?: string;
 	currTaskID: string;
+	userID: string;
 };
 
 export type { IRequestItem, IExpert, IReqBE };

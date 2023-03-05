@@ -54,6 +54,7 @@ class TaskRecords {
 				status: 'Queued',
 				maxTimeAllowed,
 				currTaskID: `${process.env.RANDOM_TASK_ID}${newID}`,
+				userID
 			};
 		const expertAvl = this.experts.find(
 			(expert) => expert.busyUntil <= task.defaultDeadlineInDays
@@ -66,6 +67,7 @@ class TaskRecords {
 				maxTimeAllowed,
 				assignedExpertID: expertAvl.id,
 				currTaskID: `${process.env.RANDOM_TASK_ID}${newID}`,
+				userID,
 			};
 		}
 		return {
@@ -73,6 +75,7 @@ class TaskRecords {
 			status: 'Queued',
 			maxTimeAllowed,
 			currTaskID: `${process.env.RANDOM_TASK_ID}${newID}`,
+			userID,
 		};
 	}
 	addTaskByUser(user: string, task: IRequestItem): IErrorWithMessage {
@@ -146,6 +149,32 @@ class TaskRecords {
 		const tasks = this.userTasks[user];
 		if (!tasks) return [];
 		return this.expireTasks(user);
+	}
+	getAllRequests(isQueued = false) {
+		const requests: IReqBE[] = [];
+		const keys = Object.keys(this.userTasks);
+		keys.forEach((key) => {
+			this.userTasks[key].forEach((task) => {
+				// I know this is O(n^2) but right now I am in a hurry
+				if(isQueued){
+					task.status==='Queued' && requests.push(task);
+				}
+				else requests.push(task);
+			});
+		});
+		return requests;
+	}
+	getRequestsByExpertID(id: string): IReqBE[] {
+		const requests = this.getAllRequests();
+		return requests.filter((item) => item.assignedExpertID === id);
+	}
+	resolveRequest(requestID:string,expertID: string) {
+		const request = this.getAllRequests();
+		const filteredRequest = request.find(item => item.currTaskID === requestID);
+		if(filteredRequest) {
+			const userID = filteredRequest.userID;
+			this.resolveByExpert(requestID,expertID,userID);
+		}
 	}
 }
 
