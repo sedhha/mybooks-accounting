@@ -11,11 +11,7 @@ const otherWebsites = [
 		id: 1,
 		href: 'https://shivamsahil.web.app/',
 	},
-	{
-		title: 'Insurance Center | Hackathon Project',
-		id: 2,
-		href: 'https://chubb-icenter.vercel.app/',
-	},
+
 	{
 		title: 'Q-Manager | Quickbooks Automation',
 		id: 3,
@@ -25,6 +21,11 @@ const otherWebsites = [
 		title: 'Content Management System | Assignment App',
 		id: 4,
 		href: 'https://cms-app-demo.vercel.app/',
+	},
+	{
+		title: 'Insurance Center | Hackathon Project',
+		id: 2,
+		href: 'https://chubb-icenter.vercel.app/',
 	},
 	{
 		title: 'Articles App | Assignment App',
