@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Customer View Screen renders LoginScreen component 1`] = `
+<div>
+  <div
+    class="Customer"
+  >
+    <ul
+      class="navList"
+    >
+      <li
+        is-active="true"
+      >
+        View Request
+      </li>
+      <li
+        is-active="false"
+      >
+        Raise Request
+      </li>
+    </ul>
+    <div
+      class="raise"
+    >
+      <h1
+        class="h1"
+      >
+        Customer ID: 
+      </h1>
+      <p
+        class="logout"
+      >
+        Not 
+        ?
+         
+        <span>
+          Logout
+        </span>
+      </p>
+      <div
+        class="userRequests"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreen renders LoginScreen component 1`] = `
+<div>
+  <div
+    class="screen"
+  >
+    <div
+      class="container"
+    >
+      <h1>
+        Login
+      </h1>
+      <div
+        class="form"
+      >
+        <label
+          for="login-id"
+        >
+          Login ID
+        </label>
+        <input
+          id="login-id"
+          name="login-id"
+          required=""
+          type="text"
+          value=""
+        />
+        <div
+          class="checkbox"
+        >
+          <label>
+            User Type:
+          </label>
+          <div
+            class="checkboxItem"
+          >
+            <input
+              checked=""
+              required=""
+              type="radio"
+              value="Customer"
+            />
+            <label>
+              Customer
+            </label>
+          </div>
+          <div
+            class="checkboxItem"
+          >
+            <input
+              required=""
+              type="radio"
+              value="Expert"
+            />
+            <label>
+              Expert
+            </label>
+          </div>
+        </div>
+        <button
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
