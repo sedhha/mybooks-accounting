@@ -8,7 +8,6 @@ const handler: NextApiHandler = (
 	res: NextApiResponse<IResponse<IReqBE[]>>
 ) => {
 	const { isQueued } = req.query;
-	console.log({ isQueued });
 	const queued = typeof isQueued !== 'string' ? false : JSON.parse(isQueued);
 	return res.status(200).json({
 		status: 200,

@@ -1,6 +1,5 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 import { IResponse } from '@/interfaces/Response';
-import { IReqBE } from '@/interfaces/Requests';
 import db from '@/db/index';
 
 const handler: NextApiHandler = (

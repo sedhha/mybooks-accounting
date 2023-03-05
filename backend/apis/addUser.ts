@@ -6,7 +6,6 @@ const validator = z.literal('Expert').or(z.literal('Customer'));
 
 const addUser = (userType?: string | string[]): IResponse<{ id: string }> => {
 	if (!userType || typeof userType !== 'string') {
-		console.log({ userType });
 		return { error: true, status: 422, message: 'Unknown User Type' };
 	}
 	const user = validator.safeParse(userType);

@@ -19,14 +19,17 @@ const navItems: INavBar[] = [
 	},
 ];
 
-const activeValue = 'View Requests';
 const ViewRequest = () => {
 	const router = useRouter();
 	const { expertID } = router.query;
 	const [tasks, setTasks] = useState<IReqBE[]>([]);
 	const [loading, setLoading] = useState(false);
+	const [activeValue, setActiveValue] = useState('Resolve Requests');
+
 	const onClickHandler = (path: string) => {
 		if (!expertID || typeof expertID !== 'string') return;
+		const newActiveValue = navItems.find((item) => item.path === path);
+		if (newActiveValue) setActiveValue(newActiveValue.value);
 		router.push(`/expert/${expertID}/${path}`);
 	};
 	const getData = () => {
@@ -39,7 +42,6 @@ const ViewRequest = () => {
 			},
 		}).then((res) =>
 			res.json().then((data) => {
-				console.log({ data });
 				setTasks([...data.payload]);
 			})
 		);
@@ -69,39 +71,42 @@ const ViewRequest = () => {
 				onClick={onClickHandler}
 			/>
 			<div className={classes.raise}>
-				<h1 className={classes.h1}>Customer ID: {expertID?.toString()}</h1>
+				<h1 className={classes.h1}>Expert ID: {expertID?.toString()}</h1>
 				<div className={classes.userRequests}>
-					{tasks.map((item) => (
-						<div
-							className={classes.userRequestCard}
-							key={item.currTaskID}
-						>
-							<p>
-								<strong>Name:</strong> {item.name}
-							</p>
-							<p>
-								<strong>Expert:</strong>{' '}
-								{item.assignedExpertID ?? 'Not Assigned'}
-							</p>
-							<p>
-								<strong>Status:</strong> {item.status}
-							</p>
-							<p>
-								<strong>Expiring on:</strong>{' '}
-								{new Date(item.maxTimeAllowed).toDateString()}
-							</p>
-							{item.status !== 'Completed' && loading ? (
-								<p>Please Wait...</p>
-							) : (
-								<button
-									type='submit'
-									onClick={() => resolveRequest(item.currTaskID)}
-								>
-									Resolve Request
-								</button>
-							)}
-						</div>
-					))}
+					{tasks.map((item) => {
+						return (
+							<div
+								className={classes.userRequestCard}
+								key={item.currTaskID}
+							>
+								<p>
+									<strong>Name:</strong> {item.name}
+								</p>
+								<p>
+									<strong>Expert:</strong>{' '}
+									{item.assignedExpertID ?? 'Not Assigned'}
+								</p>
+								<p>
+									<strong>Status:</strong> {item.status}
+								</p>
+								<p>
+									<strong>Expiring on:</strong>{' '}
+									{new Date(item.maxTimeAllowed).toDateString()}
+								</p>
+								{item.status !== 'Completed' &&
+									(loading ? (
+										<p>Please Wait...</p>
+									) : (
+										<button
+											type='submit'
+											onClick={() => resolveRequest(item.currTaskID)}
+										>
+											Resolve Request
+										</button>
+									))}
+							</div>
+						);
+					})}
 				</div>
 			</div>
 		</div>

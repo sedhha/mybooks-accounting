@@ -24,8 +24,11 @@ const ViewRequest = () => {
 	const router = useRouter();
 	const { expertID } = router.query;
 	const [tasks, setTasks] = useState<IReqBE[]>([]);
+	const [activeValue, setActiveValue] = useState('Queued Requests');
 	const onClickHandler = (path: string) => {
 		if (!expertID || typeof expertID !== 'string') return;
+		const newActiveValue = navItems.find((item) => item.path === path);
+		if (newActiveValue) setActiveValue(newActiveValue.value);
 		router.push(`/expert/${expertID}/${path}`);
 	};
 	const getData = () => {
@@ -38,7 +41,6 @@ const ViewRequest = () => {
 			},
 		}).then((res) =>
 			res.json().then((data) => {
-				console.log({ data });
 				setTasks([...data.payload]);
 			})
 		);
@@ -54,7 +56,7 @@ const ViewRequest = () => {
 				onClick={onClickHandler}
 			/>
 			<div className={classes.raise}>
-				<h1 className={classes.h1}>Customer ID: {expertID?.toString()}</h1>
+				<h1 className={classes.h1}>Expert ID: {expertID?.toString()}</h1>
 				<div className={classes.userRequests}>
 					{tasks.map((item) => (
 						<div

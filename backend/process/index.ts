@@ -30,6 +30,7 @@ class TaskRecords {
 	addDays(days: number): number {
 		return new Date().getTime() + 3600 * 1000 * 24 * days;
 	}
+
 	updateExpertTime(
 		expertAvl: IExpert,
 		newDeadline: number,
@@ -45,6 +46,7 @@ class TaskRecords {
 			return { ...expert };
 		});
 	}
+
 	addTaskBasedOnAvailability(task: IRequestItem, userID: string): IReqBE {
 		const maxTimeAllowed = this.addDays(task.defaultDeadlineInDays);
 		const newID = generateTaskID().next().value;
@@ -54,7 +56,7 @@ class TaskRecords {
 				status: 'Queued',
 				maxTimeAllowed,
 				currTaskID: `${process.env.RANDOM_TASK_ID}${newID}`,
-				userID
+				userID,
 			};
 		const expertAvl = this.experts.find(
 			(expert) => expert.busyUntil <= task.defaultDeadlineInDays
@@ -96,6 +98,7 @@ class TaskRecords {
 			return { error: false };
 		}
 	}
+
 	addUser(userType: UserType): IErrorWithMessage {
 		if (this.totalUsers > 50)
 			return { error: true, message: 'Maximum 50 users supported' };
@@ -108,6 +111,7 @@ class TaskRecords {
 		this.totalUsers++;
 		return { error: false, message: id };
 	}
+
 	resolveByExpert(
 		taskID: string,
 		expertID: string,
@@ -122,7 +126,7 @@ class TaskRecords {
 				status: 422,
 			};
 		const index = tasks.findIndex((task) => task.currTaskID === taskID);
-		if (index !== -1)
+		if (index === -1)
 			return {
 				error: true,
 				message: `Unable to find the task with ID '${taskID}'`,
@@ -156,10 +160,9 @@ class TaskRecords {
 		keys.forEach((key) => {
 			this.userTasks[key].forEach((task) => {
 				// I know this is O(n^2) but right now I am in a hurry
-				if(isQueued){
-					task.status==='Queued' && requests.push(task);
-				}
-				else requests.push(task);
+				if (isQueued) {
+					task.status === 'Queued' && requests.push(task);
+				} else requests.push(task);
 			});
 		});
 		return requests;
@@ -168,13 +171,16 @@ class TaskRecords {
 		const requests = this.getAllRequests();
 		return requests.filter((item) => item.assignedExpertID === id);
 	}
-	resolveRequest(requestID:string,expertID: string) {
+	resolveRequest(requestID: string, expertID: string): IResponse<null> {
 		const request = this.getAllRequests();
-		const filteredRequest = request.find(item => item.currTaskID === requestID);
-		if(filteredRequest) {
+		const filteredRequest = request.find(
+			(item) => item.currTaskID === requestID
+		);
+		if (filteredRequest) {
 			const userID = filteredRequest.userID;
-			this.resolveByExpert(requestID,expertID,userID);
+			return this.resolveByExpert(requestID, expertID, userID);
 		}
+		return { error: false, status: 201 };
 	}
 }
 

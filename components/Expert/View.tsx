@@ -38,7 +38,6 @@ const ViewRequest = () => {
 			},
 		}).then((res) =>
 			res.json().then((data) => {
-				console.log({ data });
 				setTasks([...data.payload]);
 			})
 		);
@@ -51,7 +50,7 @@ const ViewRequest = () => {
 				onClick={onClickHandler}
 			/>
 			<div className={classes.raise}>
-				<h1 className={classes.h1}>Customer ID: {expertID?.toString()}</h1>
+				<h1 className={classes.h1}>Expert ID: {expertID?.toString()}</h1>
 				<div className={classes.userRequests}>
 					{tasks.map((item) => (
 						<div
