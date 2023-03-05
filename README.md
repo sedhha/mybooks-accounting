@@ -36,6 +36,49 @@ Now to spin up the dev server:
 ```
 Now the server should be up and running on this [link](http://localhost:3000).
 
+## Code Details
+
+In this section, I am mentioning the details of different items involved. 
+Folder structure:
+
+```bash
+- mybooks-accounting
+  - interfaces // Contains all the typed definitions and interfaces
+    - frontend
+        - FormSelection.ts
+        - index.ts // Contains all the exported items
+        - NavBar.ts
+    - components // Contains all the frontend components used in the project
+        - Common // Contains all the common project components used at multiple places
+        ...
+    - pages
+      - Home.js
+      - About.js
+      - Contact.js
+    - utils
+      - api.js
+      - helpers.js
+  - package.json
+  - README.md
+
+```
+
+
+At very high level we have:
+
+### Frontend
+
+Frontend majorly consists of two components:
+
+- [Login Screen](components/Login)
+
+
+### Backend
+
+### Unit Testing
+
+### CI/CD
+
 
 
 ## Appendix

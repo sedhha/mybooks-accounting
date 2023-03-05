@@ -20,7 +20,7 @@ const LoginScreen = () => {
 	return (
 		<React.Fragment>
 			<Head>
-				<title>Login</title>
+				<title>MyBooks Accounting | Login</title>
 			</Head>
 			<div className={classes.screen}>
 				<div className={classes.container}>

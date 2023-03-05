@@ -1,11 +1,9 @@
 import React from 'react';
 import classes from './Login.module.css';
 import CheckBoxItem from './CheckBoxItem';
+import { ISelection } from '@/interfaces/frontend';
 
-interface ISelection {
-	label: string;
-	value: string;
-}
+
 
 type Props = {
 	onClick?: (value: string) => void;
