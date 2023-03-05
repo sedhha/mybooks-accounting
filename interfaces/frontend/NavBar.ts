@@ -1,7 +1,6 @@
 interface INavBar {
 	value: string;
-	isActive: boolean;
-	onClickHandler: (value: string) => void;
+	path: string;
 }
 
 export type { INavBar };

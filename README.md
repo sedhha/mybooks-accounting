@@ -71,9 +71,12 @@ At very high level we have:
 Frontend majorly consists of two components:
 
 - [Login Screen](components/Login)
+- [Customer Scrren](components/Customer)
 
 
 ### Backend
+
+As per the problem statement, fixed types of tasks are kept at this [json](constants/requests.json). One can always add, edit or remove from the existing json and accordingly it would reflect on UI and backend.
 
 ### Unit Testing
 

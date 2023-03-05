@@ -1,0 +1,25 @@
+/*---------CheckBox Item----------------*/
+.checkboxItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.25rem;
+
+}
+
+.checkboxItem > input {
+    cursor: pointer;
+}
+
+/*-----------------------------------CheckBox Item----------------*/
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    column-gap: 1.5vw;
+}
+
+.checkbox > label {
+	font-size: 16px;
+    margin: 1vh 0;
+}

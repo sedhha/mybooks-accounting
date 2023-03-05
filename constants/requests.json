@@ -1,0 +1,26 @@
+[
+	{
+		"name": "Review Sales",
+		"id": "cwsrgverdshawdfwevdg",
+		"defaultDeadlineInDays": 2,
+		"maximumAllowedTimeInHours": 2
+	},
+	{
+		"name": "Review Purchases",
+		"id": "cwwwgverdshawdfwevdg",
+		"defaultDeadlineInDays": 2,
+		"maximumAllowedTimeInHours": 2
+	},
+	{
+		"name": "Compute Tax",
+		"id": "cwsrgvwjqvfawdfwevdg",
+		"defaultDeadlineInDays": 2,
+		"maximumAllowedTimeInHours": 3
+	},
+	{
+		"name": "Add Tax to Books",
+		"id": "cwsrgverpgvewdfwevdg",
+		"defaultDeadlineInDays": 2,
+		"maximumAllowedTimeInHours": 1
+	}
+]

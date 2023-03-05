@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Login.module.css';
+import classes from './CheckBx.module.css';
 
 type Props = {
 	onClick?: (value: string) => void;

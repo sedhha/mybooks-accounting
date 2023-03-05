@@ -1,19 +1,18 @@
 import React from 'react';
-import classes from './Login.module.css';
-import CheckBoxItem from './CheckBoxItem';
+import classes from './CheckBx.module.css';
+import CheckBoxItem from './CheckBxItem';
 import { ISelection } from '@/interfaces/frontend';
-
-
 
 type Props = {
 	onClick?: (value: string) => void;
 	selections: ISelection[];
 	activeValue: string;
+	label: string;
 };
-const CheckBx = ({ onClick, selections, activeValue }: Props) => {
+const CheckBx = ({ onClick, selections, activeValue, label }: Props) => {
 	return (
 		<div className={classes.checkbox}>
-			<label>User Type:</label>
+			<label>{label}</label>
 			{selections.map((selection) => (
 				<CheckBoxItem
 					value={selection.value}

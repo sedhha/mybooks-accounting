@@ -3,16 +3,18 @@ import classes from './NavBar.module.css';
 
 type Props = {
 	navItems: INavBar[];
+	activeValue: string;
+	onClick: (value: string) => void;
 };
 
-const NavBar = ({ navItems }: Props) => {
+const NavBar = ({ navItems, activeValue, onClick }: Props) => {
 	return (
 		<ul className={classes.navList}>
 			{navItems.map((navItem) => (
 				<li
 					key={navItem.value}
-					is-active={`${navItem.isActive}`}
-					onClick={() => navItem.onClickHandler(navItem.value)}
+					is-active={`${navItem.value === activeValue}`}
+					onClick={() => onClick(navItem.path)}
 				>
 					{navItem.value}
 				</li>

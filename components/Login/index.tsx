@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import classes from './Login.module.css';
 import Head from 'next/head';
-import CheckBoxItem from './CheckBoxItem';
-import CheckBx from './CheckBx';
+import CheckBx from '@/components/Common/CheckBx';
 
 const availableSelections = [
 	{
@@ -37,6 +36,7 @@ const LoginScreen = () => {
 							selections={availableSelections}
 							activeValue={activeValue}
 							onClick={onUserTypeChange}
+							label={'User Type:'}
 						/>
 						<button type='submit'>Login</button>
 					</div>

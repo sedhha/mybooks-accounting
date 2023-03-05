@@ -2,24 +2,32 @@ import { INavBar } from '@/interfaces/frontend';
 import classes from './Customer.module.css';
 import NavBar from '@/components/Common/NavBar';
 import { useRouter } from 'next/router';
+
 const navItems: INavBar[] = [
 	{
 		value: 'View Request',
-		isActive: true,
-		onClickHandler: (value: string) => console.log('Triggering ' + value),
+		path: 'view',
 	},
 	{
 		value: 'Raise Request',
-		isActive: false,
-		onClickHandler: (value: string) => console.log('Triggering ' + value),
+		path: 'raise',
 	},
 ];
+const activeValue = 'View Request';
 const ViewRequest = () => {
 	const router = useRouter();
 	const { customerID } = router.query;
+	const onClickHandler = (path: string) => {
+		if (!customerID || typeof customerID !== 'string') return;
+		router.push(`/customer/${customerID}/${path}`);
+	};
 	return (
 		<div className={classes.Customer}>
-			<NavBar navItems={navItems} />
+			<NavBar
+				navItems={navItems}
+				activeValue={activeValue}
+				onClick={onClickHandler}
+			/>
 			<div>Customer: {customerID?.toString()}</div>
 		</div>
 	);
