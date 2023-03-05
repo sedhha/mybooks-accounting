@@ -50,16 +50,7 @@ Folder structure:
     - components // Contains all the frontend components used in the project
         - Common // Contains all the common project components used at multiple places
         ...
-    - pages
-      - Home.js
-      - About.js
-      - Contact.js
-    - utils
-      - api.js
-      - helpers.js
-  - package.json
-  - README.md
-
+    ...
 ```
 
 
@@ -70,7 +61,8 @@ At very high level we have:
 Frontend majorly consists of two components:
 
 - [Login Screen](components/Login)
-- [Customer Scrren](components/Customer)
+- [Customer Screen](components/Customer)
+- [Expert Screen](components/Expert)
 
 
 ### Backend
@@ -78,6 +70,8 @@ Frontend majorly consists of two components:
 As per the problem statement, fixed types of tasks are kept at this [json](constants/requests.json). One can always add, edit or remove from the existing json and accordingly it would reflect on UI and backend.
 
 ### Unit Testing
+
+I didn't got much time to complete unit testing part but have added two minor unit tests to match against existing snapshots and mock some of the functionalities.
 
 ### CI/CD
 
