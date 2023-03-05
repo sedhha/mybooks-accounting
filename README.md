@@ -2,7 +2,7 @@
 
 This is a submission web application for [Intuit Coding Challenge Full Stack](https://assessment.hackerearth.com/challenges/new/hiring/intuit-fullstack-software-engineer-hiring-challenge/).
 
-# Tools and Technologies used
+## Tools and Technologies used
 
 The framework used for this application is NEXT JS which means:
 
@@ -10,16 +10,38 @@ The framework used for this application is NEXT JS which means:
 - Node for the Backend
 
 
-# Installation and setup:
+## Installation and setup:
+
+I am using node version 18 and would recommend testing with the same version. One can always switch node versions using node version manager with this command: `nvm use 18`. If the version is already not installed, use this command:
+
+```bash
+>> nvm install 18
+>> nvm use 18
+```
+
+However make sure that `node version manager` is installed in your system. If not, [here](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) is the guide on how to do so.
+
+Run the following commands one by one. (I have used yarn however you may use npm as well).
+
+```bash
+>> git clone https://github.com/sedhha/mybooks-accounting.git
+>> cd mybooks-accounting
+>> yarn
+```
+
+Now to spin up the dev server:
+
+```bash
+>> yarn dev
+```
+Now the server should be up and running on this [link](http://localhost:3000).
 
 
 
+## Appendix
 
 
-# Appendix
-
-
-## Message for the Evaluators
+### Message for the Evaluators
 
 As mentioned in the question here:
 
@@ -31,5 +53,5 @@ and then in the bottom section:
 
 I got little confused if it is open to any backend technology or not. However, the question got me giving it a try so here I have created it with Node. I didn't use springboot as I have never coded in the same. I am familiar to Scala Play Framework though.
 
-This was just to save the time and I am well aware of restful API, devops, CI/CD and backend concepts. I can pick up any framework pretty quickly (Java | SpringBoot) as the core concepts remain the same.
+This was just to save the time and I am well aware of restful API, devops, CI/CD and backend concepts. I can pick up any framework pretty quickly (Java | SpringBoot) as the core concepts remain the same. :)
 
