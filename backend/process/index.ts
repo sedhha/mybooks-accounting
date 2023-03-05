@@ -182,6 +182,9 @@ class TaskRecords {
 		}
 		return { error: false, status: 201 };
 	}
+	addUserInBatch(userTypes: UserType[]): IErrorWithMessage[] {
+		return userTypes.map((userType) => this.addUser(userType));
+	}
 }
 
 let taskRecords: TaskRecords;
